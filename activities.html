@@ -62,7 +62,8 @@
             justify-content: space-around; /* 分布更均匀 */
             background: #2c3e50;
             padding: 0.5rem 1rem;
-            flex-wrap: wrap; /* 当空间不足时换行 */
+            /* 移除flex-wrap: wrap; 防止换行 */
+            /* flex-wrap: wrap; */
         }
 
         nav a {
@@ -77,6 +78,14 @@
         nav a:hover {
             color: #ffeb3b;
             text-decoration: underline;
+        }
+
+        /* 处理小屏幕导航栏按钮换行问题 */
+        @media (max-width: 768px) {
+            nav a {
+                font-size: 0.7rem; 
+                margin: 0 0.3rem; 
+            }
         }
 
         /* 内容容器样式 */
@@ -193,3 +202,8 @@
                     <img src="活动报名素材图/2025.4.12 周六 杭州鸬鸟山11Km800+爬升环线/6.jpg" alt="徒步旅行图片6">
                 </div>
             </div>
+        </section>
+    </div>
+</body>
+
+</html>
