@@ -19,18 +19,12 @@
         /* 头部样式 */
         header {
             position: relative;
-            /* 确保子元素可以相对定位 */
             background: url('header-bg.png') no-repeat center center;
-            /* 背景图 */
             background-size: cover;
-            /* 确保背景图覆盖整个区域 */
             text-align: center;
             padding: 1rem 0;
-            /* 增加上下内边距 */
             max-width: 1280px;
-            /* 设置最大宽度 */
             margin: 0 auto;
-            /* 居中对齐 */
         }
 
         header::before {
@@ -41,18 +35,15 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.3);
-            /* 半透明遮罩 */
             z-index: 1;
         }
 
         header h1,
         header p {
             position: relative;
-            /* 确保文字在遮罩层之上 */
             z-index: 2;
             color: white;
-            /* 白色文字增强对比 */
-			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加文字阴影，提升可读性 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
@@ -68,21 +59,24 @@
         /* 导航栏样式 */
         nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-around; /* 分布更均匀 */
             background: #2c3e50;
             padding: 0.5rem 0;
+            flex-wrap: wrap; /* 当空间不足时换行 */
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 1rem;
+            margin: 0.5rem;
             font-size: 1rem;
-            transition: color 0.3s ease;
+            padding: 0.5rem; /* 增加点击区域 */
+            transition: all 0.3s ease;
         }
 
         nav a:hover {
             color: #ffeb3b;
+            text-decoration: underline;
         }
 
         /* 内容容器样式 */
@@ -98,8 +92,9 @@
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
+            padding: 1rem;
             margin-bottom: 1.5rem;
+            overflow: hidden; /* 防止内容溢出 */
         }
 
         .section h2 {
@@ -113,34 +108,30 @@
         }
 
         /* 图文展示模块样式 */
-       .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
        .image-gallery img {
-            width: calc(33% - 1rem);
+            width: 100%;
             height: auto;
             border-radius: 8px;
             object-fit: cover;
+            margin-bottom: 1rem;
             transition: transform 0.3s ease;
         }
 
-       .image-gallery img:hover {
-            transform: scale(1.05);
-        }
+        @media (min-width: 768px) {
+           .image-gallery {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
 
-        @media (max-width: 768px) {
            .image-gallery img {
                 width: calc(50% - 1rem);
             }
         }
 
-        @media (max-width: 480px) {
+        @media (min-width: 1024px) {
            .image-gallery img {
-                width: 100%;
+                width: calc(33.333% - 1rem);
             }
         }
 
@@ -179,11 +170,11 @@
                 <li><strong>自驾游：</strong>穿越风景优美的公路，发现未知的美景。</li>
             </ul>
             <p>以下是我们俱乐部最新的活动</p>
-			
-			<!-- 2025.4.12 周六 杭州鸬鸟山11Km800+爬升环线 -->
+
+            <!-- 各个活动详情 -->
             <div class="section">
                 <h2>2025.4.12 周六 杭州鸬鸟山11Km800+爬升环线</h2>
-				<pre style="white-space: pre-wrap;">
+                <pre style="white-space: pre-wrap;">
 2025.4.12 周六 鸬鸟山11Km800+爬升环线
 
      鸬鸟山，位于鸬鸟镇，相传鸬鸟镇就是因境内有形似鸬鸟之山而得名。鸬鸟山海拔869米，为杭州十大山峰之一。
@@ -192,7 +183,7 @@
 
 联系方式
 微信：dyg1101-
-				</pre>
+                </pre>
                 <div class="image-gallery">
                     <img src="活动报名素材图/2025.4.12 周六 杭州鸬鸟山11Km800+爬升环线/1.jpg" alt="徒步旅行图片1">
                     <img src="活动报名素材图/2025.4.12 周六 杭州鸬鸟山11Km800+爬升环线/2.jpg" alt="徒步旅行图片2">
@@ -202,106 +193,3 @@
                     <img src="活动报名素材图/2025.4.12 周六 杭州鸬鸟山11Km800+爬升环线/6.jpg" alt="徒步旅行图片6">
                 </div>
             </div>
-			
-			<!-- 2025.4.11-4.13 北京箭扣长城两日，周末特种兵 -->
-            <div class="section">
-                <h2>2025.4.11-4.13 北京箭扣长城两日，周末特种兵</h2>
-				<pre style="white-space: pre-wrap;">
-2025.4.11-4.13 北京箭扣长城两日，周末特种兵
-周五下班出发
-
-箭扣长城位于北京市怀柔区西北的八道河乡境内，海拔1141米，距怀柔区中心约30公里，山势非常富于变化，险峰断崖之上的长城也显得更加雄奇险要。箭扣长城因整段长城蜿蜒呈英文字母“W”状，形如满弓扣箭而得名。箭扣长城是明代万里长城最著名的险段之一，是近年来各种长城画册中上镜率最高的一段，向来是长城摄影的热点。
-
-‌必备装备‌
-‌基础装备‌：高帮登山鞋、防滑手套、冲锋衣（带拉链口袋）‌安全装备‌：头灯（含备用电池）、GPS轨迹导航设备、急救包‌补给建议‌：人均2L水+高热量食物（巧克力/坚果），垃圾袋‌4重要安全提示‌禁止夜爬‌：2024年5月曾发生游客夜宿遭雷击重伤事件，未开放区域无安全防护‌1‌天气选择‌：避免雷雨/大风天气，晴天优先（湿度＞70%易滑坠）‌路段规避‌：九眼楼至西大墙段（城墙坍塌严重）冬季结冰期的鹰飞倒仰段（需绕行）‌5周边配套‌住宿‌：西栅子村农家院（推荐三合聚农家院），人均100-150元/晚含早‌特色美食‌：烤虹鳟鱼、柴锅炖土鸡（村内农家乐均有提供）‌
-*注：根据《长城保护条例》，禁止在城墙刻划、搬动砖石，违者将承担法律责任。建议下载"六只脚"等户外轨迹APP辅助导航。
-
-联系方式
-微信：娘娘千岁  
-				</pre>
-                <div class="image-gallery">
-                    <img src="活动报名素材图/2025.4.11-4.13 北京箭扣长城两日，周末特种兵/1.jpg" alt="徒步旅行图片1">
-                    <img src="活动报名素材图/2025.4.11-4.13 北京箭扣长城两日，周末特种兵/2.jpg" alt="徒步旅行图片2">
-                    <img src="活动报名素材图/2025.4.11-4.13 北京箭扣长城两日，周末特种兵/3.jpg" alt="徒步旅行图片3">
-                    <img src="活动报名素材图/2025.4.11-4.13 北京箭扣长城两日，周末特种兵/4.jpg" alt="徒步旅行图片4">
-                    <img src="活动报名素材图/2025.4.11-4.13 北京箭扣长城两日，周末特种兵/5.jpg" alt="徒步旅行图片5">
-                    <img src="活动报名素材图/2025.4.11-4.13 北京箭扣长城两日，周末特种兵/6.jpg" alt="徒步旅行图片6">
-                </div>
-            </div>
-			
-			<!-- 2025.4.9 浙江仙居公孟 重装两天一夜 -->
-            <div class="section">
-                <h2>2025.4.9 浙江仙居公孟 重装两天一夜</h2>
-				<pre style="white-space: pre-wrap;">
-2025.4.9 周三 仙居公孟 重装两天一夜 还有一个位置
-
-  浙江省台州市仙居县境内景区公盂岩景区位于仙居风景名胜区东面中部，面积31平方公里，海拔1200米左右，是仙居风景名胜区重点景区之一。仙居公盂景区，以岿巍著称，地型构造呈多级梯状，整个公盂巍峨鼎立，气势峥嵘，山崖连着山崖，横亘无际，各峰离立，自为一体，石林崖壁，各有风采。主要景点有：柯九思故居、二十四郎、公盂崖、竹林、神龙瀑、双狮守天门、龙母洞、旗杆岩和小龙门。  
-
-联系方式
-微信：阿电
-				</pre>
-                <div class="image-gallery">
-                    <img src="活动报名素材图/2025.4.9 浙江仙居公孟 重装两天一夜/1.jpeg" alt="徒步旅行图片1">
-                    <img src="活动报名素材图/2025.4.9 浙江仙居公孟 重装两天一夜/2.jpeg" alt="徒步旅行图片2">
-                    <img src="活动报名素材图/2025.4.9 浙江仙居公孟 重装两天一夜/3.jpeg" alt="徒步旅行图片3">
-                    <img src="活动报名素材图/2025.4.9 浙江仙居公孟 重装两天一夜/4.jpeg" alt="徒步旅行图片4">
-                    <img src="活动报名素材图/2025.4.9 浙江仙居公孟 重装两天一夜/5.jpeg" alt="徒步旅行图片5">
-                    <img src="活动报名素材图/2025.4.9 浙江仙居公孟 重装两天一夜/6.jpeg" alt="徒步旅行图片6">
-                </div>
-            </div>			
-			
-			<!-- 2025.4.9 苏州虞山雄鹰线徒步 -->
-            <div class="section">
-                <h2>2025.4.9 苏州虞山雄鹰线徒步</h2>
-				<pre style="white-space: pre-wrap;">
-4.9虞山雄鹰线徒步摇人
-自驾AA组队，新手友好，错峰出行
-长度11公里，累计爬升600米左右
-7号接龙，8号分车。
-8:00上海各地集合，10:00虞山集合开始徒步
-
-联系方式
-微信：dadada-xigua
-				</pre>
-                <div class="image-gallery">
-                    <img src="活动报名素材图/2025.4.9 苏州虞山雄鹰线徒步/1.jpeg" alt="徒步旅行图片1">
-                    <img src="活动报名素材图/2025.4.9 苏州虞山雄鹰线徒步/2.jpeg" alt="徒步旅行图片2">
-                    <img src="活动报名素材图/2025.4.9 苏州虞山雄鹰线徒步/3.jpeg" alt="徒步旅行图片3">
-                    <img src="活动报名素材图/2025.4.9 苏州虞山雄鹰线徒步/4.jpeg" alt="徒步旅行图片4">
-                    <img src="活动报名素材图/2025.4.9 苏州虞山雄鹰线徒步/5.jpeg" alt="徒步旅行图片5">
-                    <img src="活动报名素材图/2025.4.9 苏州虞山雄鹰线徒步/6.jpeg" alt="徒步旅行图片6">
-                </div>
-            </div>
-
-            <!-- 2024.4月初计划自驾西藏 -->
-            <div class="section">
-                <h2>2025.4月初计划自驾西藏</h2>
-				<pre style="white-space: pre-wrap;">
-2024.4月初计划自驾西藏
-上海出发自驾
-感兴趣的联系
-
-联系方式
-微信：w20001213t
-				</pre>
-                <div class="image-gallery">
-                    <img src="活动报名素材图/2025.4月初计划自驾西藏/1.jpeg" alt="徒步旅行图片1">
-                    <img src="活动报名素材图/2025.4月初计划自驾西藏/2.jpeg" alt="徒步旅行图片2">
-                    <img src="活动报名素材图/2025.4月初计划自驾西藏/3.jpeg" alt="徒步旅行图片3">
-                    <img src="活动报名素材图/2025.4月初计划自驾西藏/4.jpeg" alt="徒步旅行图片4">
-                    <img src="活动报名素材图/2025.4月初计划自驾西藏/5.jpeg" alt="徒步旅行图片5">
-                    <img src="活动报名素材图/2025.4月初计划自驾西藏/6.jpeg" alt="徒步旅行图片6">
-                </div>
-            </div>
-
-
-
-        </section>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 露野户外活动俱乐部. 版权所有.</p>
-    </footer>
-</body>
-
-</html>
