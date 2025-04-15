@@ -59,18 +59,18 @@
         /* 导航栏样式 */
         nav {
             display: flex;
-            justify-content: center; /* 居中对齐 */
+            justify-content: space-around; /* 分布更均匀 */
             background: #2c3e50;
-            padding: 0.5rem 1rem; /* 减少左右内边距 */
+            padding: 0.5rem 1rem;
             flex-wrap: wrap; /* 当空间不足时换行 */
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0.5rem;
-            font-size: 0.5rem;
-            padding: 0.5rem; /* 增加点击区域 */
+            margin: 0 0.5rem; /* 减少链接间的间距 */
+            font-size: 0.9rem; /* 调整字体大小 */
+            padding: 0.3rem 0.6rem; /* 减少点击区域大小 */
             transition: all 0.3s ease;
         }
 
@@ -108,7 +108,7 @@
         }
 
         /* 图文展示模块样式 */
-       .image-gallery img {
+        .image-gallery img {
             width: 100%;
             height: auto;
             border-radius: 8px;
@@ -118,19 +118,19 @@
         }
 
         @media (min-width: 768px) {
-           .image-gallery {
+            .image-gallery {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1rem;
             }
 
-           .image-gallery img {
+            .image-gallery img {
                 width: calc(50% - 1rem);
             }
         }
 
         @media (min-width: 1024px) {
-           .image-gallery img {
+            .image-gallery img {
                 width: calc(33.333% - 1rem);
             }
         }
