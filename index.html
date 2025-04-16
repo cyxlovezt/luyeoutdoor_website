@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>露野户外活动俱乐部</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 头部样式 */
+        header {
+            position: relative; /* 确保子元素可以相对定位 */
+            background: url('header-bg.png') no-repeat center center; /* 背景图 */
+            background-size: cover; /* 确保背景图覆盖整个区域 */
+            text-align: center;
+            padding: 1rem 0; /* 增加上下内边距 */
+            max-width: 1280px; /* 设置最大宽度 */
+            margin: 0 auto; /* 居中对齐 */
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* 半透明遮罩 */
+            z-index: 1;
+        }
+
+        header h1,
+        header p {
+            position: relative; /* 确保文字在遮罩层之上 */
+            z-index: 2;
+            color: white; /* 白色文字增强对比 */
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加文字阴影，提升可读性 */
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 导航栏样式 */
+        nav {
+            display: flex;
+            justify-content: space-around; /* 分布更均匀 */
+            background: #2c3e50;
+            padding: 0.5rem 1rem;
+            /* 移除flex-wrap: wrap; 防止换行 */
+            /* flex-wrap: wrap; */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.5rem; /* 减少链接间的间距 */
+            font-size: 0.8rem; /* 调整字体大小 */
+            padding: 0.3rem 0.6rem; /* 减少点击区域大小 */
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffeb3b;
+        }
+
+        /* 内容容器样式 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #e6f7e6;
+        }
+
+        /* 模块样式 */
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .section p {
+            margin: 0;
+        }
+        .section img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-top: 1rem;
+        }
+        .button {
+            display: inline-block;
+            background-color: #21bf73;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #1a985e;
+        }
+
+        /* 图片展示模块样式 */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .gallery img {
+            width: calc(33% - 1rem); /* 每行显示3张图片，减去间距 */
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05); /* 鼠标悬停时放大图片 */
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .gallery img {
+                width: calc(50% - 1rem); /* 小屏幕每行显示2张图片 */
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery img {
+                width: 100%; /* 超小屏幕每行显示1张图片 */
+            }
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <!--<img src="logo.png" alt="露野户外活动俱乐部的标志">-->
+        <h1>露野户外活动俱乐部</h1>
+        <p>非商业户外徒步、露营、自驾组织</p>
+    </header>
+
+    <!-- 导航栏 -->
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="about.html">关于我们</a>
+        <a href="activities.html">活动报名</a>
+        <a href="join.html">加入我们</a>
+        <a href="activity_rules.html">活动须知</a>
+    </nav>
+
+    <!-- 主体内容 -->
+    <div class="container">
+        <!-- 欢迎模块 -->
+        <section class="section">
+            <h2>【露野户外活动俱乐部】——探索自然，共享自由的灵魂栖息地</h2>
+            <p>我们是一个热爱大自然的非商业性户外活动组织，致力于为喜欢徒步、露营和自驾的朋友提供交流平台。所有活动均免费参与，欢迎志同道合的你加入！</p>
+			<div class="section">
+    <h2>户外活动的好处</h2>
+    <div class="benefits-content">
+        <p>1. 促进身体健康</p>
+        <ul>
+            <li>增强免疫力：户外活动让人接触更多自然元素，如阳光和新鲜空气，有助于提高身体抵抗力，减少呼吸系统疾病的发生。</li>
+            <li>改善心肺功能：户外有氧运动可以增加肺活量，增强心脏功能，促进血液循环。</li>
+            <li>促进骨骼发育：阳光中的紫外线有助于维生素D的合成，促进钙的吸收，从而强化骨骼和牙齿的发育。</li>
+        </ul>
+
+        <p>2. 提升心理健康</p>
+        <ul>
+            <li>缓解压力：户外运动能刺激大脑分泌多巴胺和内啡肽等快乐激素，帮助释放压力，改善情绪。</li>
+            <li>改善睡眠质量：暴露在阳光下有助于调节生物钟，帮助建立健康的睡眠习惯。</li>
+            <li>培养情绪管理能力：面对户外环境的变化，人们需要学会适应和调整情绪，这对心理健康有积极影响。</li>
+        </ul>
+
+        <p>3. 增强社交能力</p>
+        <ul>
+            <li>促进互动：户外活动为与家人、朋友或志同道合者提供了互动机会，有助于建立更稳固的人际关系。</li>
+            <li>培养合作精神：在户外活动中，人们可以学习分享、合作和解决冲突等社交技能。</li>
+        </ul>
+
+        <p>4. 促进认知发展</p>
+        <ul>
+            <li>激发好奇心：户外环境充满未知和惊喜，能激发探索欲望，促进主动学习。</li>
+            <li>提升空间认知能力：户外活动让人直观感受空间的大小、远近和高低，有助于培养空间感。</li>
+            <li>丰富感官体验：通过触摸、嗅闻、聆听等方式感知自然，能促进感官系统的全面发展。</li>
+        </ul>
+
+        <p>5. 其他益处</p>
+        <ul>
+            <li>预防近视：户外活动有助于保护视力，防止过早出现近视。</li>
+            <li>助消化：运动能促进肠道蠕动，帮助食物更好地消化和吸收。</li>
+        </ul>
+        
+        综上所述，户外活动对身体、心理、社交和认知发展都有显著益处。无论是成人还是儿童，都应积极参与户外活动，享受自然带来的健康与快乐。
+    </div>
+</div>
+            <!--<img src="activity.jpg" alt="户外活动精彩瞬间">-->
+            <a href="activities.html" class="button">查看最新活动</a>
+        </section>
+
+        <!-- 图片展示模块 -->
+        <section class="section">
+            <h2>精彩活动回顾</h2>
+            <p>以下是我们近期活动的精彩瞬间：</p>
+            <div class="gallery">
+                <img src="首页活动展示图/image1.jpg" alt="活动照片1">
+                <img src="首页活动展示图/image2.jpg" alt="活动照片2">
+                <img src="首页活动展示图/image3.jpg" alt="活动照片3">
+                <img src="首页活动展示图/image4.jpg" alt="活动照片4">
+                <img src="首页活动展示图/image5.jpg" alt="活动照片5">
+                <img src="首页活动展示图/image6.jpg" alt="活动照片6">
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 露野户外活动俱乐部. 版权所有.</p>
+    </footer>
+</body>
+</html>
