@@ -58,17 +58,20 @@
         /* 导航栏样式 */
         nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-around; /* 分布更均匀 */
             background: #2c3e50;
-            padding: 0.5rem 0;
+            padding: 0.5rem 1rem;
+            /* 移除flex-wrap: wrap; 防止换行 */
+            /* flex-wrap: wrap; */
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 1rem;
-            font-size: 1rem;
-            transition: color 0.3s ease;
+            margin: 0 0.5rem; /* 减少链接间的间距 */
+            font-size: 0.8rem; /* 调整字体大小 */
+            padding: 0.3rem 0.6rem; /* 减少点击区域大小 */
+            transition: all 0.3s ease;
         }
 
         nav a:hover {
