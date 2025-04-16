@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - 露野户外活动俱乐部</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f4;
+            color: #333;
+        }
+
+        /* 头部样式 */
+        header {
+            position: relative; /* 确保子元素可以相对定位 */
+            background: url('header-bg.png') no-repeat center center; /* 背景图 */
+            background-size: cover; /* 确保背景图覆盖整个区域 */
+            text-align: center;
+            padding: 1rem 0; /* 增加上下内边距 */
+            max-width: 1280px; /* 设置最大宽度 */
+            margin: 0 auto; /* 居中对齐 */
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* 半透明遮罩 */
+            z-index: 1;
+        }
+
+        header h1,
+        header p {
+            position: relative; /* 确保文字在遮罩层之上 */
+            z-index: 2;
+            color: white; /* 白色文字增强对比 */
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加文字阴影，提升可读性 */
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 导航栏样式 */
+        nav {
+            display: flex;
+            justify-content: space-around; /* 分布更均匀 */
+            background: #2c3e50;
+            padding: 0.5rem 1rem;
+            /* 移除flex-wrap: wrap; 防止换行 */
+            /* flex-wrap: wrap; */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.5rem; /* 减少链接间的间距 */
+            font-size: 0.8rem; /* 调整字体大小 */
+            padding: 0.3rem 0.6rem; /* 减少点击区域大小 */
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffeb3b;
+        }
+
+        /* 主体内容样式 */
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .section h2 {
+            color: black;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            font-size: 1rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            font-size: 1rem;
+            color: #555;
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        /* 按钮样式 */
+        .join-button {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 20px;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .join-button:hover {
+            background: #388e3c;
+        }
+
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background: #2c3e50;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <h1>露野户外活动俱乐部</h1>
+        <p>非商业户外徒步、露营、自驾组织</p>
+    </header>
+
+    <!-- 导航栏 -->
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="about.html">关于我们</a>
+        <a href="activities.html">活动报名</a>
+        <a href="join.html">加入我们</a>
+        <a href="activity_rules.html">活动须知</a>
+    </nav>
+
+    <!-- 主体内容 -->
+    <main>
+        <section class="section">
+            <h2>关于我们</h2>
+            <p>露野户外活动俱乐部成立于2014年，由一群热爱大自然的小伙伴们发起。我们的目标是让更多人了解自然、感受自然，并通过徒步、露营和自驾游等方式放松身心。</p>
+            <p>我们坚持非商业化原则，所有活动均为免费组织，费用仅限于分摊交通或餐饮成本。</p>
+            <pre style="white-space: pre-wrap;">
+俱乐部介绍
+在喧嚣都市的边缘，有一片未被尘世完全侵扰的净土，那里是心灵得以深呼吸的空间，是热爱户外探险者们心中的乌托邦。欢迎来到【露野户外活动俱乐部】，一个纯粹由热爱自然、渴望自由的灵魂自发组成的非营利性组织。在这里，没有商业的铜臭味，只有对大自然无尽的好奇与敬畏，以及对户外生活无限的热情。
+
+我们的理念：
+非商业，纯热爱：露野户外活动俱乐部坚决抵制任何以盈利为目的的活动，我们相信，对户外的热爱不应被金钱所束缚，每一次出行都应源自内心最纯粹的向往。
+
+自由组队，共创精彩：无论你是资深驴友还是户外新手，只要你怀揣对自然的向往，都可以成为我们中的一员。活动由大家自发倡议，每一次旅程都是团队智慧的结晶，每个人都能成为活动的策划者、参与者与见证者。
+
+共享资源，互助前行：我们鼓励资源共享，尤其是出行工具。自驾是我们的主要交通方式，但无需担心无车之虞，你可以轻松搭乘有车伙伴的车辆，共同踏上旅程。为了确保公平与透明，我们提倡合理分摊路费、油费及停车费等交通过程中产生的费用：路费：根据实际行驶里程，参考高速收费标准，按人头均摊。
+
+油费：出发前记录油箱满格状态，归来后再次加满，根据车辆油耗及行驶里程计算总油耗成本，同样按参与人数均分。
+
+停车费：遇到收费停车场时，记录每次停车费用，最后汇总按人头分摊。
+
+其他小额支出：如临时过桥过路费，同样采取即时记录、事后均摊的原则。
+
+我们的活动：
+露野：在星空下扎营，聆听自然的声音，体验与大地的亲密接触，享受篝火旁的温馨时光。
+
+徒步：用双脚丈量大地，穿越山林小径，发现隐藏在都市边缘的美丽秘境。
+
+爬山：挑战自我极限，站在山顶俯瞰世界，感受“会当凌绝顶，一览众山小”的豪情。
+
+自驾游：驾驶爱车，随心所欲地探索未知，沿途的风景就是最好的风景画。
+
+加入【露野户外活动俱乐部】，让我们一同逃离城市的喧嚣，走进大自然的怀抱，用每一次出行，书写属于自己的户外传奇。在这里，每个人都是故事的主角，每一次相聚都是难忘的回忆。来吧，带上你的行囊，和一群志同道合的伙伴，开启一场场说走就走的心灵之旅！
+
+有意加入我们微信群的伙伴，请添加微信：13761399567
+            </pre>
+            <a href="WX QR code.jpg" class="join-button">群主微信</a>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 露野户外活动俱乐部. 版权所有.</p>
+    </footer>
+</body>
+</html>
