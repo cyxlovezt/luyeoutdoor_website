@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户留言 - 露野户外活动俱乐部</title>
+    <title>活动报名 - 露野户外活动俱乐部</title>
     <style>
-        /* 以下保留原始页面所有样式 */
+        /* 全局样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -16,6 +16,7 @@
             line-height: 1.6;
         }
 
+        /* 头部样式 */
         header {
             position: relative;
             background: url('header-bg.png') no-repeat center center;
@@ -55,6 +56,7 @@
             margin-top: 0.5rem;
         }
 
+        /* 导航栏样式 */
         nav {
             display: flex;
             justify-content: space-around;
@@ -77,99 +79,99 @@
             text-decoration: underline;
         }
 
-        /* 以下为新增留言功能样式 */
-        .comment-section {
+        /* 内容容器样式 */
+        .container {
+            max-width: 1200px;
             margin: 2rem auto;
-            max-width: 800px;
             padding: 1rem;
+            background-color: #e6f7e6;
+            display: block; /* 改为块级元素默认纵向排列 */
         }
 
-        .comment-form {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.3rem;
-            color: #2c3e50;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 0 2px #e8f5e9;
-        }
-
-        .submit-btn {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            float: right;
-        }
-
-        .submit-btn:hover {
-            background: #388E3C;
-            transform: translateY(-1px);
-        }
-
-        .comments-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .comment-item {
-            background: white;
-            padding: 1rem;
-            margin-bottom: 1rem;
+        /* 模块样式 */
+        .section {
+            background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            animation: slideUp 0.3s ease;
+            padding: 1rem;
+            margin-bottom: 2rem; /* 增加底部外边距，分隔各个活动模块 */
+            overflow: hidden;
         }
 
-        .comment-header {
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            margin: 0;
+        }
+
+        /* 图片滑动展示模块 */
+        .image-gallery {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            color: #666;
-            font-size: 0.9rem;
+            overflow-x: auto; /* 启用水平滚动 */
+            scroll-snap-type: x mandatory; /* 强制对齐到每张图片 */
+            gap: 1rem; /* 图片之间的间距 */
+            padding: 1rem 0; /* 上下内边距 */
         }
 
-        .comment-content {
-            white-space: pre-wrap;
-            line-height: 1.6;
-            color: #333;
+        .image-gallery img {
+            flex: 0 0 auto; /* 禁止图片缩放 */
+            width: 200px; /* 每张图片的宽度 */
+            height: 150px; /* 每张图片的高度 */
+            object-fit: cover; /* 图片自动裁剪以适应比例 */
+            border-radius: 8px;
+            scroll-snap-align: start; /* 滑动时对齐到每张图片 */
+            transition: transform 0.3s ease;
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .image-gallery img:hover {
+            transform: scale(1.1); /* 鼠标悬停时放大图片 */
+        }
+
+        /* 隐藏滚动条（仅限桌面端） */
+        .image-gallery::-webkit-scrollbar {
+            display: none; /* 隐藏滚动条 */
+        }
+
+        /* 提示文字样式 */
+        .gallery-hint {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        /* 分页样式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .pagination button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .pagination button.active {
+            background-color: #388E3C;
         }
     </style>
 </head>
@@ -188,103 +190,122 @@
         <a href="activity_rules.html">活动须知</a>
     </nav>
 
-    <!-- 新增留言功能区域 -->
-    <section class="comment-section">
-        <div class="comment-form">
-            <h2 style="color: #2c3e50; margin-bottom: 1rem;">用户留言</h2>
-            <form id="commentForm">
-                <div class="form-group">
-                    <label for="username">昵称（必填）</label>
-                    <input type="text" id="username" class="form-input" required 
-                           pattern=".{2,}" 
-                           title="请输入2个以上字符">
-                </div>
-                <div class="form-group">
-                    <label for="comment">留言内容（必填）</label>
-                    <textarea id="comment" class="form-input" rows="4" required 
-                              pattern=".{5,}" 
-                              title="请输入5个以上字符"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">发布留言</button>
-            </form>
-        </div>
+    <div class="container" id="activity-container">
+        <!-- 活动将动态插入到这里 -->
+    </div>
 
-        <div class="comments-container" id="commentsContainer">
-            <!-- 留言将动态插入到这里 -->
-        </div>
-    </section>
+    <div class="pagination" id="pagination"></div>
 
     <footer>
         <p>&copy; 2025 露野户外活动俱乐部. 版权所有.</p>
     </footer>
 
     <script>
-        // 留言功能相关代码
-        const COMMENT_STORAGE_KEY = 'outdoorComments';
-        const commentForm = document.getElementById('commentForm');
-        const commentsContainer = document.getElementById('commentsContainer');
+        // JavaScript代码用于动态渲染活动和分页
+        const activities = [
+            {
+                title: '端午3天不请假，石家庄租车自驾五台山徒步，轻装，目前3人，还可以来一个～',
+                description: '端午3天不请假，石家庄租车自驾五台山徒步，轻装，目前3人，还可以来一个～',
+                images: ['活动报名素材图/五台山/1.jpeg', '活动报名素材图/五台山/2.jpeg', '活动报名素材图/五台山/3.jpeg', '活动报名素材图/五台山/4.jpeg', '活动报名素材图/五台山/5.jpeg', '活动报名素材图/五台山/6.jpeg'],
+                contact: '微信：mekoisacat'
+            },
+            {
+                title: '端午冈仁波齐转山，计划5.28/5.29飞拉萨，稍作休整租车自驾去冈仁波齐徒步转山',
+                description: '端午冈仁波齐转山，计划5.28/5.29飞拉萨，稍作休整租车自驾去冈仁波齐徒步转山，最好有一定徒步经验，会开车更佳，二十来公里一天没太大障碍的非萌新进阶选手',
+                images: ['活动报名素材图/冈仁波齐/1.jpeg', '活动报名素材图/冈仁波齐/2.jpeg', '活动报名素材图/冈仁波齐/3.jpeg', '活动报名素材图/冈仁波齐/4.jpeg', '活动报名素材图/冈仁波齐/5.jpeg', '活动报名素材图/冈仁波齐/6.jpeg'],
+                contact: '微信：Danneil787'
+            },
+            {
+                title: '5/24-25 上海出发雁荡山找车主，现有两女生，费用AA徒步路线',
+                description: `五月 24号上海出发雁荡山找车主，现有两女生，费用AA徒步路线
+24号晚上到徒步起点附近入住，25号早上上山，晚上回上海。`,
+                images: ['活动报名素材图/雁荡山/1747053350244.jpeg', '活动报名素材图/雁荡山/1747053352229.jpeg', '活动报名素材图/雁荡山/IMG_5461.jpeg', '活动报名素材图/雁荡山/IMG_5462.jpeg', '活动报名素材图/雁荡山/IMG_5463.jpeg', '活动报名素材图/雁荡山/IMG_5466.jpeg'],
+                contact: '微信：娘娘千岁'
+            },
+            {
+                title: '5/24-25这个周末有想去玩飞拉达的吗？',
+                description: '5/24-25这个周末有想去玩飞拉达的吗？',
+                images: ['活动报名素材图/飞拉达/1.jpeg', '活动报名素材图/飞拉达/2.jpeg', '活动报名素材图/飞拉达/3.jpeg', '活动报名素材图/飞拉达/4.jpeg', '活动报名素材图/飞拉达/5.jpeg', '活动报名素材图/飞拉达/6.jpeg'],
+                contact: '微信：xiaoerbao_kele'
+            },
+            {
+                title: '2025.5.24-5.25 武功山反穿 轻装住客栈',
+                description: '2025.5.24-5.25 武功山反穿 轻装住客栈',
+                images: ['活动报名素材图/武功山/IMG_5128.jpeg', '活动报名素材图/武功山/IMG_5127.jpeg', '活动报名素材图/武功山/IMG_5126.jpeg', '活动报名素材图/武功山/IMG_5125.jpeg', '活动报名素材图/武功山/IMG_5124.jpeg', '活动报名素材图/武功山/IMG_5123.jpeg'],
+                contact: '微信：zhe11215'
+            },
+            {
+                title: '2025.5.17 ～5.18 日本由布岳➕金刚山',
+                description: `有人下周末特种兵爬山吗，目前17号由布岳一男一女，18号金刚山两男，机票已经便宜200[捂脸] `,
+                images: ['活动报名素材图/由布岳/IMG_5105.jpeg', '活动报名素材图/由布岳/IMG_5106.jpeg', '活动报名素材图/由布岳/IMG_5107.jpeg', '活动报名素材图/由布岳/IMG_5108.jpeg', '活动报名素材图/由布岳/IMG_5109.jpeg', '活动报名素材图/由布岳/IMG_5115.jpeg'],
+                contact: '微信：HE JIAYE'
+            },
+            {
+                title: '14出发15回，或者17出发18回。渔山岛露营，有想去的滴滴',
+                description: `14出发15回，或者17出发18回。渔山岛露营，有想去的滴滴 `,
+                images: ['活动报名素材图/渔山岛+云顶山/1.jpeg', '活动报名素材图/渔山岛+云顶山/2.jpeg', '活动报名素材图/渔山岛+云顶山/3.jpeg', '活动报名素材图/渔山岛+云顶山/4.jpeg', '活动报名素材图/渔山岛+云顶山/5.jpeg', '活动报名素材图/渔山岛+云顶山/6.jpeg'],
+                contact: '微信：papapapayaya'
+            },            
+            // 添加其他活动... 确保总共有超过10条活动
+        ];
 
-        // 初始化加载留言
-        function loadComments() {
-            const comments = JSON.parse(localStorage.getItem(COMMENT_STORAGE_KEY)) || [];
-            comments.sort((a, b) => b.timestamp - a.timestamp);
-            renderComments(comments);
-        }
+        const itemsPerPage = 10; // 每页显示10个活动
+        let currentPage = 1;
 
-        // 渲染留言
-        function renderComments(comments) {
-            commentsContainer.innerHTML = comments.map(comment => `
-                <div class="comment-item">
-                    <div class="comment-header">
-                        <span>${comment.username}</span>
-                        <span>${new Date(comment.timestamp).toLocaleString()}</span>
-                    </div>
-                    <div class="comment-content">${escapeHtml(comment.content)}</div>
-                </div>
-            `).join('');
-        }
+        function renderActivities(page) {
+            const container = document.getElementById('activity-container');
+            const pagination = document.getElementById('pagination');
+            container.innerHTML = '';
+            pagination.innerHTML = '';
 
-        // 防止XSS攻击
-        function escapeHtml(text) {
-            return text.replace(/[&<>"']/g, tag => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;'
-            }[tag]));
-        }
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageActivities = activities.slice(startIndex, endIndex);
 
-        // 表单提交处理
-        commentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value.trim();
-            const content = document.getElementById('comment').value.trim();
+            pageActivities.forEach((activity, index) => {
+                const section = document.createElement('section');
+                section.className = 'section';
 
-            if (!username || !content) {
-                alert('昵称和内容都不能为空');
-                return;
+                const h2 = document.createElement('h2');
+                h2.textContent = activity.title;
+                section.appendChild(h2);
+
+                const pre = document.createElement('pre');
+                pre.style.whiteSpace = 'pre-wrap';
+                pre.textContent = activity.description + '\n\n联系方式\n' + activity.contact;
+                section.appendChild(pre);
+
+                const imageGallery = document.createElement('div');
+                imageGallery.className = 'image-gallery';
+                activity.images.forEach(imgSrc => {
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = `徒步旅行图片`;
+                    imageGallery.appendChild(img);
+                });
+                section.appendChild(imageGallery);
+
+                const galleryHint = document.createElement('div');
+                galleryHint.className = 'gallery-hint';
+                galleryHint.textContent = '左右滑动可查看图片';
+                section.appendChild(galleryHint);
+
+                container.appendChild(section);
+            });
+
+            for (let i = 1; i <= Math.ceil(activities.length / itemsPerPage); i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.classList.toggle('active', i === page);
+                button.addEventListener('click', () => {
+                    currentPage = i;
+                    renderActivities(currentPage);
+                });
+                pagination.appendChild(button);
             }
+        }
 
-            const newComment = {
-                id: Date.now(),
-                username,
-                content,
-                timestamp: Date.now()
-            };
-
-            let comments = JSON.parse(localStorage.getItem(COMMENT_STORAGE_KEY)) || [];
-            comments.unshift(newComment);
-            localStorage.setItem(COMMENT_STORAGE_KEY, JSON.stringify(comments));
-
-            commentForm.reset();
-            loadComments();
-        });
-
-        // 页面加载时初始化
-        window.onload = function() {
-            loadComments();
-        };
+        renderActivities(currentPage);
     </script>
 </body>
 
