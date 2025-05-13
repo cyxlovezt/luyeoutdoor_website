@@ -85,7 +85,7 @@
             margin: 2rem auto;
             padding: 1rem;
             background-color: #e6f7e6;
-            display: block; /* 改为块级元素默认纵向排列 */
+            display: block;
         }
 
         /* 模块样式 */
@@ -94,7 +94,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 1rem;
-            margin-bottom: 2rem; /* 增加底部外边距，分隔各个活动模块 */
+            margin-bottom: 2rem;
             overflow: hidden;
         }
 
@@ -111,29 +111,29 @@
         /* 图片滑动展示模块 */
         .image-gallery {
             display: flex;
-            overflow-x: auto; /* 启用水平滚动 */
-            scroll-snap-type: x mandatory; /* 强制对齐到每张图片 */
-            gap: 1rem; /* 图片之间的间距 */
-            padding: 1rem 0; /* 上下内边距 */
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1rem;
+            padding: 1rem 0;
         }
 
         .image-gallery img {
-            flex: 0 0 auto; /* 禁止图片缩放 */
-            width: 200px; /* 每张图片的宽度 */
-            height: 150px; /* 每张图片的高度 */
-            object-fit: cover; /* 图片自动裁剪以适应比例 */
+            flex: 0 0 auto;
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
             border-radius: 8px;
-            scroll-snap-align: start; /* 滑动时对齐到每张图片 */
+            scroll-snap-align: start;
             transition: transform 0.3s ease;
         }
 
         .image-gallery img:hover {
-            transform: scale(1.1); /* 鼠标悬停时放大图片 */
+            transform: scale(1.1);
         }
 
         /* 隐藏滚动条（仅限桌面端） */
         .image-gallery::-webkit-scrollbar {
-            display: none; /* 隐藏滚动条 */
+            display: none;
         }
 
         /* 提示文字样式 */
@@ -142,15 +142,6 @@
             font-size: 0.8rem;
             color: #888;
             margin-top: 0.5rem;
-        }
-
-        /* 页脚样式 */
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
         }
 
         /* 分页样式 */
@@ -172,6 +163,166 @@
 
         .pagination button.active {
             background-color: #388E3C;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        /* 留言区样式 */
+        .comments-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+        }
+
+        .comments-section h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .comment-form button {
+            background-color: #2c3e50;
+            color: white;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .comment-form button:hover {
+            background-color: #34495e;
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .comment-item {
+            background-color: #ecf8ec;
+            padding: 0.75rem;
+            border-left: 4px solid #2c3e50;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.2rem;
+        }
+        
+        .delete-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.2rem 0.4rem;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+        
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .image-preview-container {
+            margin-top: 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .image-preview {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .image-preview-wrapper {
+            position: relative;
+        }
+        
+        .remove-image {
+            position: absolute;
+            top: 0.2rem;
+            right: 0.2rem;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .file-input-label {
+            background-color: #3498db;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        
+        .file-input-label:hover {
+            background-color: #2980b9;
+        }
+        
+        #imageUpload {
+            display: none;
+        }
+        
+        .image-upload-hint {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.2rem;
         }
     </style>
 </head>
@@ -196,116 +347,259 @@
 
     <div class="pagination" id="pagination"></div>
 
+    <!-- 留言区域 -->
+    <section class="comments-section">
+        <h2>用户留言</h2>
+        <form class="comment-form" id="commentForm">
+            <input type="text" id="author" placeholder="您的昵称" required />
+            <textarea id="content" rows="4" placeholder="写下您的留言..." required></textarea>
+            <div class="image-upload-container">
+                <label for="imageUpload" class="file-input-label">添加图片（最多9张）</label>
+                <input type="file" id="imageUpload" accept="image/*" multiple />
+                <div class="image-upload-hint">支持格式：JPG, PNG, GIF（单张不超过2MB）</div>
+                <div class="image-preview-container" id="imagePreviewContainer"></div>
+            </div>
+            <button type="submit">提交留言</button>
+        </form>
+        <div class="error-message" id="errorMessage"></div>
+        <div class="comment-list" id="commentList">
+            <!-- 留言将自动填充到此处 -->
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2025 露野户外活动俱乐部. 版权所有.</p>
+        <p>&copy; 2025 霁野户外活动俱乐部. 版权所有.</p>
     </footer>
 
     <script>
-        // JavaScript代码用于动态渲染活动和分页
-        const activities = [
-            {
-                title: '端午3天不请假，石家庄租车自驾五台山徒步，轻装，目前3人，还可以来一个～',
-                description: '端午3天不请假，石家庄租车自驾五台山徒步，轻装，目前3人，还可以来一个～',
-                images: ['活动报名素材图/五台山/1.jpeg', '活动报名素材图/五台山/2.jpeg', '活动报名素材图/五台山/3.jpeg', '活动报名素材图/五台山/4.jpeg', '活动报名素材图/五台山/5.jpeg', '活动报名素材图/五台山/6.jpeg'],
-                contact: '微信：mekoisacat'
-            },
-            {
-                title: '端午冈仁波齐转山，计划5.28/5.29飞拉萨，稍作休整租车自驾去冈仁波齐徒步转山',
-                description: '端午冈仁波齐转山，计划5.28/5.29飞拉萨，稍作休整租车自驾去冈仁波齐徒步转山，最好有一定徒步经验，会开车更佳，二十来公里一天没太大障碍的非萌新进阶选手',
-                images: ['活动报名素材图/冈仁波齐/1.jpeg', '活动报名素材图/冈仁波齐/2.jpeg', '活动报名素材图/冈仁波齐/3.jpeg', '活动报名素材图/冈仁波齐/4.jpeg', '活动报名素材图/冈仁波齐/5.jpeg', '活动报名素材图/冈仁波齐/6.jpeg'],
-                contact: '微信：Danneil787'
-            },
-            {
-                title: '5/24-25 上海出发雁荡山找车主，现有两女生，费用AA徒步路线',
-                description: `五月 24号上海出发雁荡山找车主，现有两女生，费用AA徒步路线
-24号晚上到徒步起点附近入住，25号早上上山，晚上回上海。`,
-                images: ['活动报名素材图/雁荡山/1747053350244.jpeg', '活动报名素材图/雁荡山/1747053352229.jpeg', '活动报名素材图/雁荡山/IMG_5461.jpeg', '活动报名素材图/雁荡山/IMG_5462.jpeg', '活动报名素材图/雁荡山/IMG_5463.jpeg', '活动报名素材图/雁荡山/IMG_5466.jpeg'],
-                contact: '微信：娘娘千岁'
-            },
-            {
-                title: '5/24-25这个周末有想去玩飞拉达的吗？',
-                description: '5/24-25这个周末有想去玩飞拉达的吗？',
-                images: ['活动报名素材图/飞拉达/1.jpeg', '活动报名素材图/飞拉达/2.jpeg', '活动报名素材图/飞拉达/3.jpeg', '活动报名素材图/飞拉达/4.jpeg', '活动报名素材图/飞拉达/5.jpeg', '活动报名素材图/飞拉达/6.jpeg'],
-                contact: '微信：xiaoerbao_kele'
-            },
-            {
-                title: '2025.5.24-5.25 武功山反穿 轻装住客栈',
-                description: '2025.5.24-5.25 武功山反穿 轻装住客栈',
-                images: ['活动报名素材图/武功山/IMG_5128.jpeg', '活动报名素材图/武功山/IMG_5127.jpeg', '活动报名素材图/武功山/IMG_5126.jpeg', '活动报名素材图/武功山/IMG_5125.jpeg', '活动报名素材图/武功山/IMG_5124.jpeg', '活动报名素材图/武功山/IMG_5123.jpeg'],
-                contact: '微信：zhe11215'
-            },
-            {
-                title: '2025.5.17 ～5.18 日本由布岳➕金刚山',
-                description: `有人下周末特种兵爬山吗，目前17号由布岳一男一女，18号金刚山两男，机票已经便宜200[捂脸] `,
-                images: ['活动报名素材图/由布岳/IMG_5105.jpeg', '活动报名素材图/由布岳/IMG_5106.jpeg', '活动报名素材图/由布岳/IMG_5107.jpeg', '活动报名素材图/由布岳/IMG_5108.jpeg', '活动报名素材图/由布岳/IMG_5109.jpeg', '活动报名素材图/由布岳/IMG_5115.jpeg'],
-                contact: '微信：HE JIAYE'
-            },
-            {
-                title: '14出发15回，或者17出发18回。渔山岛露营，有想去的滴滴',
-                description: `14出发15回，或者17出发18回。渔山岛露营，有想去的滴滴 `,
-                images: ['活动报名素材图/渔山岛+云顶山/1.jpeg', '活动报名素材图/渔山岛+云顶山/2.jpeg', '活动报名素材图/渔山岛+云顶山/3.jpeg', '活动报名素材图/渔山岛+云顶山/4.jpeg', '活动报名素材图/渔山岛+云顶山/5.jpeg', '活动报名素材图/渔山岛+云顶山/6.jpeg'],
-                contact: '微信：papapapayaya'
-            },            
-            // 添加其他活动... 确保总共有超过10条活动
-        ];
+        // 初始化函数
+        function init() {
+            loadComments();
+            setupEventListeners();
+        }
 
-        const itemsPerPage = 10; // 每页显示10个活动
-        let currentPage = 1;
+        // 加载留言并按时间倒序排序
+        function loadComments() {
+            try {
+                const commentList = document.getElementById("commentList");
+                commentList.innerHTML = "";
+                let comments = JSON.parse(localStorage.getItem("comments")) || [];
+                
+                // 数据验证
+                if(!Array.isArray(comments)) {
+                    comments = [];
+                    localStorage.removeItem("comments");
+                    console.warn("检测到损坏的留言数据，已重置");
+                }
 
-        function renderActivities(page) {
-            const container = document.getElementById('activity-container');
-            const pagination = document.getElementById('pagination');
-            container.innerHTML = '';
-            pagination.innerHTML = '';
+                // 按日期降序排列留言（最新在前）
+                comments.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const pageActivities = activities.slice(startIndex, endIndex);
+                if(comments.length === 0) {
+                    commentList.innerHTML = '<div class="comment-item">暂无留言，快来发表第一条吧！</div>';
+                    return;
+                }
 
-            pageActivities.forEach((activity, index) => {
-                const section = document.createElement('section');
-                section.className = 'section';
-
-                const h2 = document.createElement('h2');
-                h2.textContent = activity.title;
-                section.appendChild(h2);
-
-                const pre = document.createElement('pre');
-                pre.style.whiteSpace = 'pre-wrap';
-                pre.textContent = activity.description + '\n\n联系方式\n' + activity.contact;
-                section.appendChild(pre);
-
-                const imageGallery = document.createElement('div');
-                imageGallery.className = 'image-gallery';
-                activity.images.forEach(imgSrc => {
-                    const img = document.createElement('img');
-                    img.src = imgSrc;
-                    img.alt = `徒步旅行图片`;
-                    imageGallery.appendChild(img);
+                comments.forEach(comment => {
+                    const div = document.createElement("div");
+                    div.className = "comment-item";
+                    div.innerHTML = `
+                        <div class="comment-author">${escapeHtml(comment.author)}</div>
+                        <div>${escapeHtml(comment.content)}</div>
+                        <div class="image-preview-container">${getImagesHtml(comment.images)}</div>
+                        <div class="comment-date">${comment.date}</div>
+                        <button class="delete-btn" onclick="deleteComment('${comment.id}')">删除</button>
+                    `;
+                    commentList.appendChild(div);
                 });
-                section.appendChild(imageGallery);
-
-                const galleryHint = document.createElement('div');
-                galleryHint.className = 'gallery-hint';
-                galleryHint.textContent = '左右滑动可查看图片';
-                section.appendChild(galleryHint);
-
-                container.appendChild(section);
-            });
-
-            for (let i = 1; i <= Math.ceil(activities.length / itemsPerPage); i++) {
-                const button = document.createElement('button');
-                button.textContent = i;
-                button.classList.toggle('active', i === page);
-                button.addEventListener('click', () => {
-                    currentPage = i;
-                    renderActivities(currentPage);
-                });
-                pagination.appendChild(button);
+            } catch (error) {
+                console.error("加载留言时出错:", error);
+                document.getElementById("errorMessage").textContent = "加载留言时出错，请刷新页面重试";
             }
         }
 
-        renderActivities(currentPage);
+        // 获取图片HTML
+        function getImagesHtml(images) {
+            if (!images || images.length === 0) return '';
+            return images.map(img => `
+                <div class="image-preview-wrapper">
+                    <img class="image-preview" src="${img}" alt="用户上传的图片">
+                </div>
+            `).join('');
+        }
+
+        // 防止XSS攻击的简单HTML转义
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // 提交留言
+        function submitComment(e) {
+            e.preventDefault();
+            clearErrorMessage();
+
+            const authorInput = document.getElementById("author");
+            const contentInput = document.getElementById("content");
+            const imagePreviewContainer = document.getElementById("imagePreviewContainer");
+            const imageElements = imagePreviewContainer.querySelectorAll(".image-preview");
+            const images = Array.from(imageElements).map(img => img.src);
+            const author = authorInput.value.trim();
+            const content = contentInput.value.trim();
+
+            if (!author || !content) {
+                showErrorMessage("请输入昵称和留言内容！");
+                return;
+            }
+
+            if (author.length > 20) {
+                showErrorMessage("昵称不能超过20个字符");
+                return;
+            }
+
+            if (content.length > 500) {
+                showErrorMessage("留言内容不能超过500个字符");
+                return;
+            }
+
+            if (images.length > 9) {
+                showErrorMessage("最多只能上传9张图片");
+                return;
+            }
+
+            try {
+                const now = new Date();
+                const dateStr = now.toLocaleString('zh-CN', { 
+                    year: 'numeric', 
+                    month: '2-digit', 
+                    day: '2-digit', 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    second: '2-digit' 
+                });
+                const id = `${now.getTime()}-${Math.random().toString(36).substr(2, 9)}`;
+                const newComment = { 
+                    id, 
+                    author: escapeHtml(author), 
+                    content: escapeHtml(content), 
+                    date: dateStr,
+                    images: images
+                };
+
+                let comments = JSON.parse(localStorage.getItem("comments")) || [];
+                comments.push(newComment);
+                localStorage.setItem("comments", JSON.stringify(comments));
+
+                authorInput.value = "";
+                contentInput.value = "";
+                imagePreviewContainer.innerHTML = "";
+                document.getElementById("imageUpload").value = "";
+                loadComments();
+            } catch (error) {
+                console.error("提交留言时出错:", error);
+                showErrorMessage("提交留言失败，请稍后再试");
+            }
+        }
+
+        // 处理图片上传
+        function handleImageUpload(event) {
+            const files = event.target.files;
+            const imagePreviewContainer = document.getElementById("imagePreviewContainer");
+            const maxSize = 2 * 1024 * 1024; // 2MB
+            const maxImages = 9;
+            const currentCount = imagePreviewContainer.querySelectorAll(".image-preview").length;
+            
+            if (currentCount + files.length > maxImages) {
+                showErrorMessage(`最多只能上传${maxImages}张图片`);
+                return;
+            }
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                if (!file.type.match('image.*')) {
+                    showErrorMessage("只能上传图片文件");
+                    continue;
+                }
+                
+                if (file.size > maxSize) {
+                    showErrorMessage(`图片 ${file.name} 超过2MB限制`);
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewWrapper = document.createElement("div");
+                    previewWrapper.className = "image-preview-wrapper";
+                    
+                    const img = document.createElement("img");
+                    img.className = "image-preview";
+                    img.src = e.target.result;
+                    
+                    const removeBtn = document.createElement("button");
+                    removeBtn.className = "remove-image";
+                    removeBtn.innerHTML = "×";
+                    removeBtn.type = "button";
+                    removeBtn.onclick = function() {
+                        previewWrapper.remove();
+                    };
+                    
+                    previewWrapper.appendChild(img);
+                    previewWrapper.appendChild(removeBtn);
+                    imagePreviewContainer.appendChild(previewWrapper);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // 删除留言
+        function deleteComment(id) {
+            if(!confirm("确定要删除这条留言吗？此操作不可撤销！")) {
+                return;
+            }
+
+            try {
+                let comments = JSON.parse(localStorage.getItem("comments")) || [];
+                const originalCount = comments.length;
+                
+                comments = comments.filter(comment => comment.id !== id);
+                
+                if(comments.length < originalCount) {
+                    localStorage.setItem("comments", JSON.stringify(comments));
+                    loadComments();
+                } else {
+                    showErrorMessage("未找到要删除的留言，请刷新页面后重试");
+                }
+            } catch (error) {
+                console.error("删除留言时出错:", error);
+                showErrorMessage("删除留言失败，请稍后再试");
+            }
+        }
+
+        // 显示错误信息
+        function showErrorMessage(message) {
+            const errorElement = document.getElementById("errorMessage");
+            errorElement.textContent = message;
+            setTimeout(clearErrorMessage, 5000);
+        }
+
+        // 清除错误信息
+        function clearErrorMessage() {
+            document.getElementById("errorMessage").textContent = "";
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            document.getElementById("commentForm").addEventListener("submit", submitComment);
+            document.getElementById("imageUpload").addEventListener("change", handleImageUpload);
+        }
+
+        // 页面加载时初始化
+        window.onload = init;
     </script>
 </body>
 
