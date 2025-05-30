@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>活动报名 - 露野户外活动俱乐部</title>
     <style>
         /* 全局样式 */
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
             background-color: #f4f9f4;
             color: #333;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .page-wrapper {
+            flex: 1;
         }
 
         /* 头部样式 */
@@ -30,10 +39,7 @@
         header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-color: rgba(0, 0, 0, 0.3);
             z-index: 1;
         }
@@ -82,10 +88,9 @@
         /* 内容容器样式 */
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 1rem auto; /* 减少顶部和底部的外边距 */
             padding: 1rem;
             background-color: #e6f7e6;
-            display: block; /* 改为块级元素默认纵向排列 */
         }
 
         /* 模块样式 */
@@ -94,7 +99,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 1rem;
-            margin-bottom: 2rem; /* 增加底部外边距，分隔各个活动模块 */
+            margin-bottom: 1rem; /* 减少模块之间的间距 */
             overflow: hidden;
         }
 
@@ -113,35 +118,82 @@
             display: flex;
             overflow-x: auto; /* 启用水平滚动 */
             scroll-snap-type: x mandatory; /* 强制对齐到每张图片 */
-            gap: 1rem; /* 图片之间的间距 */
-            padding: 1rem 0; /* 上下内边距 */
+            gap: 1rem;
+            padding: 1rem 0;
         }
 
         .image-gallery img {
-            flex: 0 0 auto; /* 禁止图片缩放 */
-            width: 200px; /* 每张图片的宽度 */
-            height: 150px; /* 每张图片的高度 */
-            object-fit: cover; /* 图片自动裁剪以适应比例 */
+            flex: 0 0 auto;
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
             border-radius: 8px;
-            scroll-snap-align: start; /* 滑动时对齐到每张图片 */
+            scroll-snap-align: start;
             transition: transform 0.3s ease;
         }
 
         .image-gallery img:hover {
-            transform: scale(1.1); /* 鼠标悬停时放大图片 */
+            transform: scale(1.1);
         }
 
         /* 隐藏滚动条（仅限桌面端） */
         .image-gallery::-webkit-scrollbar {
-            display: none; /* 隐藏滚动条 */
+            display: none;
         }
 
-        /* 提示文字样式 */
-        .gallery-hint {
+        /* 新增：双排图片展示模块 */
+        .double-row-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            margin: 1rem auto; /* 减少顶部和底部的外边距 */
+            max-width: 1200px;
+        }
+
+        .double-row-gallery img {
+            width: calc(33% - 1rem); /* 每行3张图 */
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .double-row-gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* 固定在底部的按钮区域 */
+        .bottom-button-area {
             text-align: center;
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 0.5rem;
+            padding: 2rem 0;
+            background-color: #f4f9f4;
+            margin-top: auto;
+        }
+
+        .bottom-button-area a {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            color: white;
+            background-color: #2c3e50;
+            text-decoration: none;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+			margin: 0 1.5rem;
+        }
+
+        .bottom-button-area a:hover {
+            background-color: #34495e;
+        }
+
+        .bottom-button-area p {
+            margin-top: 1rem;
+            color: #666;
         }
 
         /* 页脚样式 */
@@ -150,38 +202,20 @@
             color: white;
             text-align: center;
             padding: 1rem 0;
-            margin-top: 2rem;
-        }
-
-        /* 分页样式 */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .pagination button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .pagination button.active {
-            background-color: #388E3C;
         }
     </style>
 </head>
 
 <body>
+<div class="page-wrapper">
+
+    <!-- 头部 -->
     <header>
         <h1>露野户外活动俱乐部</h1>
         <p>非商业户外徒步、露营、自驾组织</p>
     </header>
 
+    <!-- 导航栏 -->
     <nav>
         <a href="index.html">首页</a>
         <a href="about.html">关于我们</a>
@@ -190,357 +224,55 @@
         <a href="activity_rules.html">活动须知</a>
     </nav>
 
+    <!-- 动态活动列表 -->
     <div class="container" id="activity-container">
-        <!-- 活动将动态插入到这里 -->
+        <div class="section">
+            <p>🏕🏔🏕🏔🏕    往期精彩活动回顾️    🏕🏔🏕🏔🏕</p>
+        </div>
     </div>
 
-    <div class="pagination" id="pagination"></div>
+    <!-- 新增：双排图片展示模块 -->
+    <div class="double-row-gallery" id="double-row-gallery">
+        <!-- 这里将通过JavaScript动态插入图片 -->
+    </div>
 
-    <footer>
-        <p>&copy; 2025 露野户外活动俱乐部. 版权所有.</p>
-    </footer>
+</div>
 
-    <script>
-        // JavaScript代码用于动态渲染活动和分页
-        const activities = [
-            {
-                title: '2025.9.22出发意大利米兰，波尔扎诺租车去多洛米蒂，可以拼车，休斯高原和富内斯山谷游玩结束去布莱耶斯湖有Av1 ，感兴趣的可以一起',
-                description: `2025.9.22出发意大利米兰，波尔扎诺租车去多洛米蒂，可以拼车，休斯高原和富内斯山谷游玩结束去布莱耶斯湖有Av1 ，感兴趣的可以一起`,
-                images: ['活动报名素材图/意大利米兰/IMG_5723.jpeg', '活动报名素材图/意大利米兰/IMG_5724.jpeg', '活动报名素材图/意大利米兰/IMG_5725.jpeg', '活动报名素材图/意大利米兰/IMG 5726.jpeg', '活动报名素材图/意大利米兰/IMG 5727.jpeg', '活动报名素材图/意大利米兰/IMG_5728.jpeg'],
-                contact: '微信：骉'
-            },
-            {
-                title: '2025.6.21出发乌孙古道 有没有一起的',
-                description: `乌孙古道活动行程：
-————————
-D1天：伊宁市集合
-当日下午19:00前到达集合，检查装备、行前准备会议。
-用餐：欢迎晚宴
-住宿：准4星酒店（标间）
-————————
-D2天：伊宁-琼库什台-D1营地 
-         徒步15公里
-早餐后乘车途经特克斯县（八卦城），到达琼库什台村（中国历史文化名村）用餐，餐后开始徒步。
-用餐：含早餐/晚餐
-住宿：琼库什台河谷营地
-海拨：2800米
-————————
-D3：D1营地-包扎墩达坂-D2营地，徒步20公里。
-早9:00出发，约2小时到达阪下，翻越包扎墩达坂（3670m）。达坂顶上小气候变化明显，也许会偶遇降雨。一路下行至阔克苏河边，扎营。
-用餐：含营地早餐/营地晚餐
-住宿：库诺萨依营地扎营
-海拨：3350米
-————————
-D4：D2营地-溜索过河-D3营地
-         徒步25公里
-早9:00出发，溜索过河，沿科克苏河南岸顺流而下，至草原站附近扎营。
-用餐：含营地早餐/营地晚餐
-住宿：阔克苏河营地
-海拨：1980米
-————————
-D5：D3营地-天堂湖-D4营地  
-       徒步15公里
-早9:00出发，约14:00到达天堂湖（阿克库勒湖），扎营在天堂湖畔，海拔3000米，夜里会很冷，注意防寒。
-用餐：含营地早餐/营地晚餐
-住宿：天堂湖营地
-海拨：3020米
-————————
-D6：D4营地-阿克布拉克达坂-D5营地   
-       徒步20公里
-早10:00出发，沿着天堂湖边缘，穿过栈道，往阿克布拉克达坂（3800m）。过达坂后一路缓下。
-用餐：含营地早餐/营地晚餐
-住宿：博孜克日格河谷营地
-海拨：3280米
-————————
-D7：D5营地-河谷-D6营地-库车解散
-徒步25公里
-早9:00出发，沿着河谷前行，数十次过河（溯溪鞋必备），出山后与接应车辆汇合，入住酒店后庆功晚宴。
-用餐：含营地早餐/晚餐
-住宿：准4星酒店（标间）
-D8：库车解散-
-费用包含服务内容如下：
-————————
-1，帐篷，睡袋、防潮垫，营地设施。
-2，过河费、马帮费。
-3，含乌孙古道内所有的早饭+晚饭 荤素搭配，营养齐全。
-4， 其他的一些公共安全装备、专业户外工具等。
-5，专业领队费。
-6，所有订制团队队员的保险（每人60万保险，包含骑马保险和徒步保险）
-7，包含伊利接机和库车送机。 `,
-                images: ['活动报名素材图/乌孙古道/3823e597934050a47c1935805ab7ca78.jpeg', '活动报名素材图/乌孙古道/45c2305c92523c05766cf1bc644c2185.jpeg', '活动报名素材图/乌孙古道/4dc31c6279ef3dd604b0f4fba0c11@1.jpeg', '活动报名素材图/乌孙古道/584cdfd7f54a8e8470c2897faee26955.jpeg', '活动报名素材图/乌孙古道/9ea99825f074fe38216774dcfa63efe1.jpeg', '活动报名素材图/乌孙古道/fe0e44a8faf7074cb3e7fb536ae7fb4c.jpeg'],
-                contact: '微信：TZQ398043575'
-            },
-            {
-                title: '2025.6.13下班出发火车到长沙，租车自驾岳阳/咸宁湖南湖北交界处徒步',
-                description: `613下班火车出发，614早上到长沙，租车自驾岳阳/咸宁湖南湖北交界处徒步（木阜山或石凹村也可另行规划）
-615去潜江吃小龙虾，下午到武汉还车回程。
-组1车4人，尚有2个位子，男女不限，未成年老人和大学生婉拒。
-确认行程，一起抢票`,
-                images: ['活动报名素材图/头门岛/IMG_5968.jpeg', '活动报名素材图/头门岛/IMG_5969.jpeg', '活动报名素材图/头门岛/IMG_5970.jpeg', '活动报名素材图/头门岛/IMG_5971.jpeg', '活动报名素材图/头门岛/IMG_5972.jpeg', '活动报名素材图/头门岛/IMG_5973.jpeg'],
-                contact: '微信：mekoisacat'
-            },
-            {
-                title: '2025.6.7 临安三尖单日轻装(路程24KM,爬升1270M)',
-                description: `6.6下午17：00-17：30上海嘉定安亭自驾出发住宿临安石浪村
-6.7早6：30出发至太子尖登山口
-目前上海出发3人，缺1`,
-                images: ['活动报名素材图/太子尖/1.jpg', '活动报名素材图/太子尖/2.jpg', '活动报名素材图/太子尖/3.jpg', '活动报名素材图/太子尖/4.jpg', '活动报名素材图/太子尖/5.jpg', '活动报名素材图/太子尖/6.jpg'],
-                contact: '微信：zamika'
-            },
-            {
-                title: '2025.6月6号下午2点绿皮硬卧出发 6月7号早上6:53分到泰山站 酒店就在火车站350米 放好行李开爬',
-                description: `6月6号下午2点绿皮硬卧出发 6月7号到泰山站早上6:53分 酒店就在火车站350米 放好行李开爬 
-路线：岱庙-红门-中天门-十八盘-南天门-玉皇顶-桃花峪 全程22公里 
-晚上吃饭AA 6月8号自由活动 
-下午6点火绿皮硬卧回上海松江站4:30分 
-目前2个大叔 找女大二名`,
-                images: ['活动报名素材图/夜爬泰山/1.jpg', '活动报名素材图/夜爬泰山/2.jpg', '活动报名素材图/夜爬泰山/3.jpg', '活动报名素材图/夜爬泰山/4.jpg', '活动报名素材图/夜爬泰山/5.jpg', '活动报名素材图/夜爬泰山/6.jpg'],
-                contact: '微信：jintiannichifanle'
-            },
-            {
-                title: '2025.6.5从杭州出发，走318进藏到拉萨，后续从青藏线返回，全程大约25天-30天，如果状态好，可以考虑增加行程去新疆，有没有搭车的？',
-                description: `浙江宁波人，单人单车纯电车小鹏G6，6月5日从杭州出发，走318进藏到拉萨
-后续从青藏线返回，全程大约25天-30天，如果状态好，可以考虑增加行程去新疆，有没有搭车的？
-本人床车+帐篷+酒店休整，小伙伴可以帐篷+酒店休整。`,
-                images: ['活动报名素材图/西藏自驾/IMG_5738.webp', '活动报名素材图/西藏自驾/IMG_5739.webp', '活动报名素材图/西藏自驾/IMG_5737.webp', '活动报名素材图/西藏自驾/IMG_5740.webp', '活动报名素材图/西藏自驾/IMG_5741.webp', '活动报名素材图/西藏自驾/IMG_5742.webp'],
-                contact: '微信：bearsam0102'
-            },
-            {
-                title: '2025.6.5晚 上海卧铺火车出发武功山',
-                description: '我6月5日晚上卧铺上海出发，6日晚住千丈岩，7日晚住金顶，8日返回上海 ',
-                images: ['活动报名素材图/武功山/IMG_5123.jpeg', '活动报名素材图/武功山/IMG_5124.jpeg', '活动报名素材图/武功山/IMG_5125.jpeg', '活动报名素材图/武功山/IMG_5126.jpeg', '活动报名素材图/武功山/IMG_5127.jpeg', '活动报名素材图/武功山/IMG_5128.jpeg'],
-                contact: '微信：mobu365'
-            },
-            {
-                title: '端午假期去济州岛偶来小路重装徒步',
-                description: `有人想在端午假期去济州岛偶来小路重装徒步吗？
-预计本周三上海/杭州出发，6.2返程，中间徒步四天，预计走5-6条线，每日徒步距离20km以上，但没有太大爬升。
-目前计划是一天露营，一天住酒店，行程可以一起商量计划，如果体力都比较好的话争取拿到100km认证证书.
-我们现在有一男一女两人，都是有经验的，等人一起来玩，尤其是轻量化玩家特别欢迎.
-人数不限～有想法的朋友可以联系我`,
-                images: ['活动报名素材图/济州岛/IMG_5956.jpeg', '活动报名素材图/济州岛/IMG_5957.jpeg', '活动报名素材图/济州岛/IMG_5958.jpeg', '活动报名素材图/济州岛/IMG_5959.jpeg', '活动报名素材图/济州岛/IMG_5960.jpeg', '活动报名素材图/济州岛/IMG_5961.jpeg'],
-                contact: '微信：aoowww_'
-            },
-            {
-                title: '端午两天两晚的千八线，有要冲的不？ ',
-                description: '端午两天两晚的千八线，有要冲的不？ ',
-                images: ['活动报名素材图/千八线/IMG_5579.jpeg', '活动报名素材图/千八线/IMG_5580.jpeg', '活动报名素材图/千八线/IMG_5581.jpeg', '活动报名素材图/千八线/IMG_5582.jpeg', '活动报名素材图/千八线/IMG_5583.jpeg', '活动报名素材图/千八线/IMG_5584.jpeg'],
-                contact: '微信：honll002'
-            },
-            {
-                title: '端午3天不请假，石家庄租车自驾五台山徒步，轻装，目前3人，还可以来一个～',
-                description: '端午3天不请假，石家庄租车自驾五台山徒步，轻装，目前3人，还可以来一个～',
-                images: ['活动报名素材图/五台山/1.jpeg', '活动报名素材图/五台山/2.jpeg', '活动报名素材图/五台山/3.jpeg', '活动报名素材图/五台山/4.jpeg', '活动报名素材图/五台山/5.jpeg', '活动报名素材图/五台山/6.jpeg'],
-                contact: '微信：mekoisacat'
-            },
-            {
-                title: '2025.6.1 浙江省杭州市富阳区 杏梅尖大环线徒步',
-                description: `6.1有没有去杏梅尖大环线的呀？有车，有人开车。松江大学城集合，休闲爬，要有爬山经验，身体素质还不错。目前2人还差2人`,
-                images: ['活动报名素材图/杏梅尖/1.jpg', '活动报名素材图/杏梅尖/2.jpeg', '活动报名素材图/杏梅尖/3.jpeg', '活动报名素材图/杏梅尖/4.jpeg', '活动报名素材图/杏梅尖/5.jpeg', '活动报名素材图/杏梅尖/6.jpeg'],
-                contact: '微信：琪琪'
-            },
-            {
-                title: '2025.5.31号-6.2 天台山瀑布-大雷山-水桶岙 ',
-                description: `5月31行程
-上海→天台山瀑布（不用爬山有懒人版）→荷叶湾（大雷山徒步点）
-睡：民宿
+<!-- 底部按钮 -->
+<div class="bottom-button-area">
+    <a href="https://www.luyecamping.site/index.php?s=quan&c=show&id=3" target="_blank">
+        查看活动
+    </a>
+    <!-- 新增的跳转按钮 -->
+    <a href="https://www.luyecamping.site/index.php?s=member&app=quan&c=son&m=add&tid=&cid=3&leixing=wenzhang" target="_blank">
+        发布活动
+    </a>
+    <p>点击上方按钮，跳转至最新活动或发布活动。</p>
+</div>
 
-6月1日：
-拿下大雷山15km
-睡：民宿
+<!-- 页脚 -->
+<footer>
+    <p>&copy; 2025 露野户外活动俱乐部. 版权所有.</p>
+</footer>
 
-6月2日：
-水桶岙7km➕返程
-自驾费用AA, 目前两男一女 再摇一女生好拼房`,
-                images: ['活动报名素材图/大雷山/1.jpeg', '活动报名素材图/大雷山/2.jpeg', '活动报名素材图/大雷山/3.jpeg', '活动报名素材图/大雷山/4.jpg', '活动报名素材图/大雷山/5.jpg', '活动报名素材图/大雷山/6.jpg'],
-                contact: '微信：lajiao001996'
-            },
-            {
-                title: '2025端午活动 第一天:去程+盐帮十八渡第二天:神仙居+(时间充裕可以去摘杨梅)第三天:国清寺+附近溜达+返程 ',
-                description: `端午节轻松游玩线捞人!!!想捞个小哥+再捞1个妹纸(目前三男三女，考虑两人一间房好拼房)
-集合点:泗泾或者九亭人数:8人活动费用:①吃饭住宿 AA ②)车费(油费四人 AA，每车给车主50 块洗车费（辛苦费），三个乘客 A)
-行程:
-第一天:去程+盐帮十八渡
-第二天:神仙居+(时间充裕可以去摘杨梅)
-第三天:国清寺+附近溜达+返程
-参加活动者请自行购买运动保险`,
-                images: ['活动报名素材图/盐帮古道/1.jpeg', '活动报名素材图/盐帮古道/2.jpeg', '活动报名素材图/盐帮古道/3.jpeg', '活动报名素材图/盐帮古道/4.jpeg', '活动报名素材图/盐帮古道/5.jpeg', '活动报名素材图/盐帮古道/6.jpeg'],
-                contact: '微信：Marina_Xiao0715'
-            },
-            {
-                title: '2025.5.31 9:00出发 松兰山➕饭桶山',
-                description: ` 端午象山
-一切费用aa酒店自定
-31晚 东旦村附近1号晚韩岭附近
+<script>
+    // 新增：渲染双排图片展示模块
+    function renderDoubleRowGallery() {
+        const galleryContainer = document.getElementById('double-row-gallery');
+        const sampleImages = ['首页活动展示图/image2.jpg', '首页活动展示图/image1.jpg', '首页活动展示图/image3.jpg', '首页活动展示图/image4.jpg', '首页活动展示图/image5.jpg', '首页活动展示图/image6.jpg'];
+        
+        sampleImages.forEach(imgSrc => {
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = '示例图片';
+            galleryContainer.appendChild(img);
+        });
+    }
 
-31号上午9.(七莘路/九亭出发)
-11.30左右到宁波吃午饭(吃啥没定)
-2.左右到半边山沙滩玩+吃
-6.左右到东旦村(绿野仙踪+篝火)
-
-1号
-9.出发去松兰山-礁石咖啡-冲浪沙滩
-下午去饭桶山(来不及就不去)
-5.30出发去韩岭老街的酒店
-上山去你的名字取景地(45min)
-2号	9.出发韩岭老街-小加州-院士中心-利	
-民村
-下午6.回上海(应该9点之前能到)
-
-暂时就2男生能拍照能扛包摇2/3人男女不限 `,
-                images: ['活动报名素材图/松兰山/IMG_5949.jpeg', '活动报名素材图/松兰山/IMG_5950.jpeg', '活动报名素材图/松兰山/IMG_5951.jpeg', '活动报名素材图/松兰山/IMG_5952.jpeg', '活动报名素材图/松兰山/IMG_5953.jpeg', '活动报名素材图/松兰山/IMG_5954.jpeg'],
-                contact: '微信：ywqilj1314'
-            },
-            {
-                title: '2025.5.31-6.1 台州仙居淡竹溪边营地露营🏕️',
-                description: `5.31-6.1端午露营行程安排：
-5.31早8.30
-上海出发集合地点：宜山路目的地：台州仙居淡竹溪边营地
-预计下午到达，如营地人不多可周边看风景午餐。下午扎营玩水晚上用餐看星。第二天看日出玩水
-PS：饮用水车上统一采购（一部车准备1桶6-10L饮用水），用餐食材协商准备。
-来回车费油费过路费AA
-装备：露营过夜装备、餐食、登山杖、登山鞋、遮阳帽、墨镜、防晒、充电宝、头灯等
-本次活动为非盈利活动，请各自做好各自安全工作，保证安全，当好各自安全第一责任人！！ `,
-                images: ['活动报名素材图/昆山张浦镇露营/IMG_5873.jpeg', '活动报名素材图/昆山张浦镇露营/IMG_5874.jpeg', '活动报名素材图/昆山张浦镇露营/IMG_5875.jpeg', '活动报名素材图/昆山张浦镇露营/IMG_5876.jpeg', '活动报名素材图/昆山张浦镇露营/IMG_5877.jpeg', '活动报名素材图/昆山张浦镇露营/IMG_5878.jpeg'],
-                contact: '微信：St_OR_rY'
-            },
-            {
-                title: '2025.5.31 (端午节)，上海站高铁出发，南京红石谷穿越',
-                description: `5.31(端午节)，上海站高铁出发
-南京红石谷穿越(起点4号线王家湾站，终点2号线苜蓿园站)
-全程15㎞，爬升560M，找搭子`,
-                images: ['活动报名素材图/南京红石谷/IMG_5867.jpeg', '活动报名素材图/南京红石谷/IMG_5868.jpeg', '活动报名素材图/南京红石谷/IMG_5869.jpeg', '活动报名素材图/南京红石谷/IMG_5870.jpeg', '活动报名素材图/南京红石谷/IMG_5871.jpeg', '活动报名素材图/南京红石谷/IMG_5872.jpeg'],
-                contact: '微信：zamika'
-            },
-            {
-                title: '2025.5.31 周六 盐帮十八渡溯溪，12.63km 爬升600m',
-                description: `5月31日周六，盐帮十八渡溯溪，12.63km 爬升600m
-上车点：2号线会展中心/萧塘5号线  3=2 摇人`,
-                images: ['活动报名素材图/盐帮古道/1.jpeg', '活动报名素材图/盐帮古道/2.jpeg', '活动报名素材图/盐帮古道/3.jpeg', '活动报名素材图/盐帮古道/4.jpeg', '活动报名素材图/盐帮古道/5.jpeg', '活动报名素材图/盐帮古道/6.jpeg'],
-                contact: '微信：dadada-xigua'
-            },
-	    {
-                title: '2025.5.31 昆山双洋潭露营，不过夜，夜里要下雨。要去的Q我，人数控制十人以内',
-                description: `端午不出远门，31号昆山双洋潭露营，不过夜，夜里要下雨。要去的Q我，人数控制十人以内。`,
-                images:  ['活动报名素材图/共青露营/1.jpg', '活动报名素材图/共青露营/2.jpeg', '活动报名素材图/共青露营/3.jpeg', '活动报名素材图/共青露营/4.jpeg', '活动报名素材图/共青露营/5.jpeg', '活动报名素材图/共青露营/6.jpeg'],
-                contact: '微信：syssrsj'
-            },		
-            {
-                title: '2025.5.30号-6.2 浙江台州四日游',
-                description: `5月30号-6月2号台州四日游第一天:头门岛(5月30号)
->自驾导航: 台州头门村(有停车位P))>徒步路线:头门岛徒步，13km，爬升210mi>徒步耗时:约5小时(含休息补给拍摄时间)
-第二天:小箬村-水桶岙(5月31号)>小箬村停车点:七彩小岛停车点-小箬村闲逛-麒麟山>水桶岙停车点:小交陈村
->徒步路线:台州水桶岙-14km大环线(顺时针5km到达沙滩露营)第三天:括苍山(6月1号)
->紫阳古街
->括苍山停车位:黄石坦村
->徒步路线:临安括苍山(两步路)，顺时针，全程约15公里，累计爬升1400多米响
->露营点:阳光山庄前面空地
-备选大雷山(偷懒路线)
->停车点:天台上寮村`,
-                images: ['活动报名素材图/头门岛/IMG_5968.jpeg', '活动报名素材图/头门岛/IMG_5969.jpeg', '活动报名素材图/头门岛/IMG_5970.jpeg', '活动报名素材图/头门岛/IMG_5971.jpeg', '活动报名素材图/头门岛/IMG_5972.jpeg', '活动报名素材图/头门岛/IMG_5973.jpeg'],
-                contact: '微信：k12345678900k'
-            },
-            {
-                title: '2025.5.30出发喀拉峻草原',
-                description: `端午 重装 喀拉峻草原小环线。
- 目前已有3人
-30号伊宁到琼库什台 扎营
-31号 （14km 1050）加撒干营地 西喀拉峻 
-1号（22km  855）东喀拉峻营地 博克家营地
-2号（18km 324） 塔里木。
-ps：走完喀拉峻我会再去南疆玩几天，然后经西安回上海，有兴趣滴滴～`,
-                images: ['活动报名素材图/喀拉峻草原/IMG_5905.jpeg', '活动报名素材图/喀拉峻草原/IMG_5906.jpeg', '活动报名素材图/喀拉峻草原/IMG_5907.jpeg', '活动报名素材图/喀拉峻草原/IMG_5908.jpeg', '活动报名素材图/喀拉峻草原/IMG_5909.jpeg', '活动报名素材图/喀拉峻草原/IMG_5910.jpeg'],
-                contact: '微信：huangxin874228'
-            },
-            {
-                title: '2025.5.30 5/30号晚上出发去三清山，31号爬山，晚上住山顶，第二天下山，之后去望仙谷过夜，2号回上海，会开车最好',
-                description: `5/30号晚上出发去三清山，31号爬山
-晚上住山顶，第二天下山
-之后去望仙谷过夜，2号回上海
-会开车最好`,
-                images: ['活动报名素材图/三清山/1747371091899.jpeg', '活动报名素材图/三清山/1747371093801.jpeg', '活动报名素材图/三清山/1747371103944.jpeg', '活动报名素材图/三清山/IMG_5597.jpeg', '活动报名素材图/三清山/IMG_5600.jpeg', '活动报名素材图/三清山/IMG_5602.jpeg'],
-                contact: '微信：f1120912147'
-            },
-            {
-                title: '2025.5.30晚上出发，31号桨板跳岛，晚上蒙古包露营，1号钟乳石洞穴探险，2号自驾游环岛回家 目前10女，9男，缺1个上海出发的女生一起拼房，感兴趣的请联系我',
-                description: `30号晚上出发，31号桨板跳岛，晚上蒙古包露营，1号钟乳石洞穴探险，2号自驾游环岛回家
-目前10女，9男，缺1个上海出发的女生一起拼房，感兴趣的请联系我`,
-                images: ['活动报名素材图/头门岛/IMG_5968.jpeg', '活动报名素材图/头门岛/IMG_5969.jpeg', '活动报名素材图/头门岛/IMG_5970.jpeg', '活动报名素材图/头门岛/IMG_5971.jpeg', '活动报名素材图/头门岛/IMG_5972.jpeg', '活动报名素材图/头门岛/IMG_5973.jpeg'],
-                contact: '微信：jerry_7912'
-            },
-            {
-                title: '2025.5.30周五早上7：30 松江泗泾出发，杭州杏梅尖，13KM上升1000M， 搭车不要钱，自己买保险',
-                description: `本周五早上7：30 松江泗泾出发，杭州杏梅尖，13KM上升1000M， 搭车不要钱，自己买保险。`,
-                images: ['活动报名素材图/杏梅尖/1.jpg', '活动报名素材图/杏梅尖/2.jpeg', '活动报名素材图/杏梅尖/3.jpeg', '活动报名素材图/杏梅尖/4.jpeg', '活动报名素材图/杏梅尖/5.jpeg', '活动报名素材图/杏梅尖/6.jpeg'],
-                contact: '微信：EdwardLi0529'
-            },
-            {
-                title: '2025.5.30周五下班出发杭州村子露营，6.1返沪，已经10人，差一个浦东出发的电车，有的dd',
-                description: `5.30下班出发杭州村子露营，6.1返沪，已经10人，差一个浦东出发的电车，有的dd`,
-                images: ['活动报名素材图/共青露营/1.jpg', '活动报名素材图/共青露营/2.jpeg', '活动报名素材图/共青露营/3.jpeg', '活动报名素材图/共青露营/4.jpeg', '活动报名素材图/共青露营/5.jpeg', '活动报名素材图/共青露营/6.jpeg'],
-                contact: '微信：BooksAndSex'
-            },
-            // 添加其他活动... 确保总共有超过10条活动
-        ];
-
-        const itemsPerPage = 10; // 每页显示10个活动
-        let currentPage = 1;
-
-        function renderActivities(page) {
-            const container = document.getElementById('activity-container');
-            const pagination = document.getElementById('pagination');
-            container.innerHTML = '';
-            pagination.innerHTML = '';
-
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const pageActivities = activities.slice(startIndex, endIndex);
-
-            pageActivities.forEach((activity, index) => {
-                const section = document.createElement('section');
-                section.className = 'section';
-
-                const h2 = document.createElement('h2');
-                h2.textContent = activity.title;
-                section.appendChild(h2);
-
-                const pre = document.createElement('pre');
-                pre.style.whiteSpace = 'pre-wrap';
-                pre.textContent = activity.description + '\n\n联系方式\n' + activity.contact;
-                section.appendChild(pre);
-
-                const imageGallery = document.createElement('div');
-                imageGallery.className = 'image-gallery';
-                activity.images.forEach(imgSrc => {
-                    const img = document.createElement('img');
-                    img.src = imgSrc;
-                    img.alt = `徒步旅行图片`;
-                    imageGallery.appendChild(img);
-                });
-                section.appendChild(imageGallery);
-
-                const galleryHint = document.createElement('div');
-                galleryHint.className = 'gallery-hint';
-                galleryHint.textContent = '左右滑动可查看图片';
-                section.appendChild(galleryHint);
-
-                container.appendChild(section);
-            });
-
-            for (let i = 1; i <= Math.ceil(activities.length / itemsPerPage); i++) {
-                const button = document.createElement('button');
-                button.textContent = i;
-                button.classList.toggle('active', i === page);
-                button.addEventListener('click', () => {
-                    currentPage = i;
-                    renderActivities(currentPage);
-                });
-                pagination.appendChild(button);
-            }
-        }
-
-        renderActivities(currentPage);
-    </script>
+    // 调用函数渲染双排图片展示模块
+    window.onload = () => {
+        renderDoubleRowGallery();
+    };
+</script>
 </body>
-
 </html>
