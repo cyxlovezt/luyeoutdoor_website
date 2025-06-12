@@ -42,7 +42,7 @@
             position: relative; /* 确保文字在遮罩层之上 */
             z-index: 2;
             color: white; /* 白色文字增强对比 */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加文字阴影，提升可读性 */
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加文字阴影，提升可读性 */
         }
 
         header h1 {
@@ -56,22 +56,22 @@
         }
 
         /* 导航栏样式 */
-    nav {
-      display: flex;
-      justify-content: space-around; /* 分布更均匀 */
-      background: #2c3e50;
-      padding: 0.5rem 1rem;
-      white-space: nowrap; /* 强制不换行 */
-    }
+		nav {
+			display: flex;
+			justify-content: space-around; /* 分布更均匀 */
+			background: #2c3e50;
+			padding: 0.5rem 1rem;
+			white-space: nowrap; /* 强制不换行 */
+		}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 0.3rem; /* 减少链接间的间距 */
-      font-size: 0.75rem; /* 调整字体大小 */
-      padding: 0.3rem 0.6rem; /* 减少点击区域大小 */
-      transition: all 0.3s ease;
-    }
+		nav a {
+			color: white;
+			text-decoration: none;
+			margin: 0 0.3rem; /* 减少链接间的间距 */
+			font-size: 0.75rem; /* 调整字体大小 */
+			padding: 0.3rem 0.6rem; /* 减少点击区域大小 */
+			transition: all 0.3s ease;
+		}
 
         nav a:hover {
             color: #ffeb3b;
@@ -176,7 +176,7 @@
             border-radius: 6px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease;
-      margin: 0 1.5rem;
+			margin: 0 1.5rem;
         }
 
         .bottom-button-area a:hover {
@@ -244,7 +244,7 @@
 
 <!-- 页脚 -->
 <footer>
-    <p>© 2025 露野户外活动俱乐部. 版权所有.</p>
+    <p>&copy; 2025 露野户外活动俱乐部. 版权所有.</p>
 </footer>
 
 <script>
@@ -252,6 +252,7 @@
     function renderDoubleRowGallery() {
         const galleryContainer = document.getElementById('double-row-gallery');
         const sampleImages = ['首页活动展示图/image2.jpg', '首页活动展示图/image1.jpg', '首页活动展示图/image3.jpg', '首页活动展示图/image4.jpg', '首页活动展示图/image5.jpg', '首页活动展示图/image6.jpg'];
+        
         sampleImages.forEach(imgSrc => {
             const img = document.createElement('img');
             img.src = imgSrc;
